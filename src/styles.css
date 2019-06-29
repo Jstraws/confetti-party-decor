@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+.intro-header {
+  background: #777777 no-repeat scroll center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+  margin-bottom: 50px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container > * {
+  width: 100%;
+}
+
+.crop-image img {
+  object-fit: contain; /* Do not scale the image */
+  object-position: center; /* Center the image within the element */
+  align-items: center;
+  width: 100%;
+  min-height: 250px;
+  max-height: 250px;
+  cursor: zoom-in;
+}
+

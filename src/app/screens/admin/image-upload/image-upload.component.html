@@ -1,0 +1,91 @@
+<!--suppress HtmlFormInputWithoutLabel -->
+<app-header-bar imageUrl="../../assets/img/contact-bg-min.jpg" text="Image Upload"></app-header-bar>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="row">
+        <div class="col">
+          <h3>Drag Files</h3>
+          <div (fileOver)="fileOverBase($event)" [ngClass]="{'nv-file-over': hasBaseDropZoneOver}"
+               [uploader]="uploader"
+               class="card card-body bg-light my-drop-zone"
+               ng2FileDrop>Image Upload
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6 form-container">
+          <mat-form-field>
+            <mat-label>Category Type</mat-label>
+            <mat-select [(value)]="type" (selectionChange)="fetchCategories()">
+              <mat-option *ngFor="let option of types" value="{{option}}">{{option | titlecase}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-md-6 form-container">
+          <mat-form-field>
+            <mat-label>Image Type</mat-label>
+            <mat-select (valueChange)="updateUrl()" [(value)]="option" [disabled]="!type">
+              <mat-option *ngFor="let option of categories"
+                          value="{{option.categoryId}}">{{option.categoryName}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 form-container ml-auto">
+          <button (click)="uploader.uploadAll()" [disabled]="!(uploader.queue.length > 0) || !option"
+                  class="btn btn-success">Upload
+          </button>
+        </div>
+        <div class="col-md-4 form-container mr-auto">
+          <button (click)="uploader.clearQueue()" [disabled]="!(uploader.queue.length > 0)"
+                  class="btn btn-warning">Clear All
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div>
+        Upload Progress:
+        <div class="progress" style="">
+          <div [ngStyle]="{ 'width': uploader.progress + '%' }" class="progress-bar" role="progressbar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <table *ngIf="uploader.queue.length > 0" class="table">
+        <thead>
+        <tr>
+          <th class="image-preview">Image Preview</th>
+          <th>File Name</th>
+          <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of uploader.queue">
+          <td>
+            <img [media]="item._file" alt="preview" appMediaPreview class="img-thumbnail" src="">
+          </td>
+          <td>
+            <mat-form-field>
+              <input [(ngModel)]="item.file.name" matInput placeholder="File Name" required type="text">
+            </mat-form-field>
+          </td>
+          <td>
+            <button (click)="item.remove()" class="btn btn-danger btn-sm">Remove
+              <fa-icon icon="trash"></fa-icon>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

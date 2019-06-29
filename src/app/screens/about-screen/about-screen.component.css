@@ -1,0 +1,9 @@
+.about-title {
+  margin-top: 70px;
+  margin-bottom: 30px;
+  text-shadow: 2px 2px 4px #000000;
+  text-align: right;
+  color: white;
+  font-size: 80px;
+  font-weight: 800;
+}

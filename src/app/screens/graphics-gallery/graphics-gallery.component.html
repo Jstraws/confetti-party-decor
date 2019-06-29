@@ -1,0 +1,29 @@
+<app-header-bar imageUrl="../../assets/img/contact-bg-min.jpg" text="Graphics"></app-header-bar>
+<div class="container">
+  <div class="row">
+    <ul class="list-inline mx-auto">
+      <li class="list-inline-item">
+        <a class="btn btn-outline-primary" routerLink="/graphics-gallery/candle_boards">Candle Boards</a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn btn-outline-primary" routerLink="/graphics-gallery/invitations">Invitations</a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn btn-outline-primary" routerLink="/graphics-gallery/logos">Logos</a>
+      </li>
+      <li class="list-inline-item">
+        <a class="btn btn-outline-primary" routerLink="/graphics-gallery/seating_sign_in_boards">
+          Seating & Sign-In Boards
+        </a>
+      </li>
+    </ul>
+  </div>
+  <h1>{{header}}</h1>
+  <div class="row">
+    <div *ngFor="let image of images; let i=index;" class="col-md-3 px-3 py-1">
+      <div class="crop-image bg-dark">
+        <img (click)="open(i)" [defaultImage]="defaultImage" [lazyLoad]="cdnUrl + '/' + image.filename" alt="{{image.filename}}" src>
+      </div>
+    </div>
+  </div>
+</div>

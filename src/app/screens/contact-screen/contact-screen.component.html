@@ -1,0 +1,73 @@
+<!--suppress HtmlFormInputWithoutLabel -->
+<app-header-bar imageUrl="../../assets/img/contact-bg-min.jpg" text="Contact Us"></app-header-bar>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 offset-2">
+      <p>
+        To get in touch with us please fill out the form below or send an email directly to
+        ConfettiPartyDecor@Verizon.net
+      </p>
+      <mat-card>
+        <mat-card-title>Contact Form</mat-card-title>
+        <mat-card-content>
+          <form (ngSubmit)="submit()" [formGroup]="form">
+            <div class="row">
+              <div class="col-md-6 form-container">
+                <mat-form-field>
+                  <input formControlName="name" matInput placeholder="Name" required type="text">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 form-container">
+                <mat-form-field>
+                  <input formControlName="location" matInput placeholder="Event Location" required type="text">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 form-container">
+                <mat-form-field>
+                  <input formControlName="email" matInput placeholder="Email" required type="email">
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 form-container">
+                <mat-form-field>
+                  <input appPhoneMask formControlName="phone" matInput placeholder="Phone" required type="tel">
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 form-container">
+                <mat-form-field>
+                  <input [matDatepicker]="picker" formControlName="date" matInput placeholder="Event Date" required>
+                  <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6 form-container">
+                <mat-form-field>
+                  <mat-label>Budget</mat-label>
+                  <mat-select formControlName="budget" required>
+                    <mat-option *ngFor="let option of budgetOptions" value="{{option}}">{{option}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 form-container">
+                <mat-form-field>
+                  <textarea formControlName="additionalDetails" matInput placeholder="Additional Details"
+                            rows="8"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 form-container mx-auto">
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
