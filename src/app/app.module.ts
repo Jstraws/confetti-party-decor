@@ -38,6 +38,8 @@ import {GraphicsGalleryComponent} from './screens/graphics-gallery/graphics-gall
 import {LazyLoadImageModule} from 'ng-lazyload-image';
 import {SingleGalleryComponent} from './screens/single-gallery/single-gallery.component';
 import {LightboxModule} from 'ngx-lightbox';
+import {ImageSortingComponent} from './screens/admin/image-sorting/image-sorting.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 const appRoutes: Routes = [
   {path: 'about', component: AboutScreenComponent},
@@ -47,6 +49,7 @@ const appRoutes: Routes = [
   {path: 'graphics-gallery/:type', component: GraphicsGalleryComponent},
   {path: 'gallery/:type', component: SingleGalleryComponent},
   {path: 'admin-upload', component: ImageUploadComponent, canActivate: [AuthGuard]},
+  {path: 'admin-sort', component: ImageSortingComponent, canActivate: [AuthGuard]},
   {path: 'admin-login', component: AdminLoginComponent},
   {path: '**', redirectTo: 'home'}
 ];
@@ -66,7 +69,8 @@ const appRoutes: Routes = [
     MediaPreviewDirective,
     BalloonGalleryComponent,
     GraphicsGalleryComponent,
-    SingleGalleryComponent
+    SingleGalleryComponent,
+    ImageSortingComponent
   ],
   imports: [
     UiModule,

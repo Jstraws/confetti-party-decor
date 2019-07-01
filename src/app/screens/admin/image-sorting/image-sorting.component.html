@@ -1,0 +1,43 @@
+<!--suppress RequiredAttributes -->
+<app-header-bar imageUrl="../../assets/img/contact-bg-min.jpg" text="Image Upload"></app-header-bar>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <ul class="col text-center list-inline">
+        <li class="list-inline-item">
+          <a routerLink="/admin-upload" class="btn btn-outline-primary">Image Upload</a>
+        </li>
+        <li class="list-inline-item">
+          <a routerLink="/admin-sort" class="btn btn-outline-primary">Image Sorting</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 form-container ml-auto">
+      <mat-form-field>
+        <mat-label>Category Type</mat-label>
+        <mat-select [(value)]="type" (selectionChange)="fetchCategories()">
+          <mat-option *ngFor="let option of types" value="{{option}}">{{option | titlecase}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-md-4 form-container mr-auto">
+      <mat-form-field>
+        <mat-label>Image Type</mat-label>
+        <mat-select (selectionChange)="fetchImages()" [(value)]="option" [disabled]="!type">
+          <mat-option *ngFor="let option of categories"
+                      value="{{option.folderName}}">{{option.categoryName}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 px-3 py-1 example-box" *ngFor="let image of images">
+      <div class="crop-image bg-dark">
+        <img style="cursor: auto !important;" [defaultImage]="defaultImage" [lazyLoad]="cdnUrl + '/' + image.filename"
+             alt="{{image.filename}}">
+      </div>
+    </div>
+  </div>
+</div>

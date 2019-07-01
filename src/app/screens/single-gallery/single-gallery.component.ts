@@ -28,7 +28,6 @@ export class SingleGalleryComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.type = params.get('type');
-      console.log(this.type.indexOf('centerpiece'));
       this.cdnUrl = `${environment.cdnUrl}/${this.type}`;
       this.images = [];
 
