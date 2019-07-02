@@ -21,7 +21,7 @@
   <h1>{{header}}</h1>
   <div class="row">
     <div *ngFor="let image of images; let i=index;" class="col-md-3 px-3 py-1">
-      <div class="crop-image bg-dark">
+      <div class="crop-image bg-dark rounded">
         <img (click)="open(i)" [defaultImage]="defaultImage" [lazyLoad]="cdnUrl + '/' + image.filename" alt="{{image.filename}}" src>
       </div>
     </div>
