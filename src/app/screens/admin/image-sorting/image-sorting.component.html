@@ -1,7 +1,7 @@
 <!--suppress RequiredAttributes, HtmlFormInputWithoutLabel -->
 <app-header-bar imageUrl="../../assets/img/contact-bg-min.jpg" text="Image Upload"></app-header-bar>
 <alert class="position-fixed mx-auto alert-shift" *ngIf="alertMessage" type="success">
-  <button type="button" class="close" (click)="alertMessage=''" aria-label="Close">
+  <button type="button" class="close" (click)="closeAlert()" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
   {{alertMessage}}

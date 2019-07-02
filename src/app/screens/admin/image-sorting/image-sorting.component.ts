@@ -49,7 +49,7 @@ export class ImageSortingComponent implements OnInit {
     });
   }
 
-  saveImage(image: Image) {
+  public saveImage(image: Image) {
     this.sortAndRenumber();
     this.imageService.saveImage(image).subscribe(data => {
       image = data;
@@ -74,7 +74,7 @@ export class ImageSortingComponent implements OnInit {
     }
   }
 
-  deleteImage(imageId: number) {
+  public deleteImage(imageId: number) {
     this.confirm.showConfirm('Delete Image', 'Are you sure you want to delete this image?')
       .content.onClose.subscribe(isConfirmed => {
       if (isConfirmed) {
@@ -84,5 +84,10 @@ export class ImageSortingComponent implements OnInit {
         });
       }
     });
+  }
+
+  public closeAlert() {
+    this.alertMessage = '';
+    this.alertService.setErrorMessage('');
   }
 }

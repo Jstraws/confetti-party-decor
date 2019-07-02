@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FileUploader} from 'ng2-file-upload';
 import {Category} from '../../../_models/category';
 import {CategoryService} from '../../../_services/category.service';
@@ -11,6 +11,7 @@ const URL = 'https://confetti-email-service.herokuapp.com/image/upload/';
   styleUrls: ['./image-upload.component.css']
 })
 export class ImageUploadComponent implements OnInit {
+  @ViewChild('fileUpload') fileElement: ElementRef;
   public option: number;
   public type: string;
   public categories: Category[];
@@ -49,4 +50,7 @@ export class ImageUploadComponent implements OnInit {
     };
   }
 
+  fileUploadClick() {
+    this.fileElement.nativeElement.click();
+  }
 }
