@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <h4 class="modal-title fa-pull-left">{{title}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <h5>{{body}}</h5>
+  <form (ngSubmit)="onConfirm()">
+    <div class="modalFooter">
+      <div class="row">
+        <div class="col-md-4 form-container ml-auto">
+          <button type="submit" class="btn btn-primary">Yes</button>
+        </div>
+        <div class="col-md-4 form-container mr-auto">
+          <button type="button" class="btn btn-secondary" (click)="onCancel()">No</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

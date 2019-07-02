@@ -27,6 +27,20 @@
   cursor: zoom-in;
 }
 
+.alert-shift {
+  top: 70px;
+  width: 100%;
+  opacity: .95;
+  z-index: 999;
+  text-align: center;
+}
+
+.alert-shift div {
+  width: 25%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 /*.example-list {*/
 /*  width: 500px;*/
 /*  max-width: 100%;*/

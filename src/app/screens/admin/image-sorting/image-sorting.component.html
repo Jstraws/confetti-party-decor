@@ -1,5 +1,11 @@
 <!--suppress RequiredAttributes, HtmlFormInputWithoutLabel -->
 <app-header-bar imageUrl="../../assets/img/contact-bg-min.jpg" text="Image Upload"></app-header-bar>
+<alert class="position-fixed mx-auto alert-shift" *ngIf="alertMessage" type="success">
+  <button type="button" class="close" (click)="alertMessage=''" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  {{alertMessage}}
+</alert>
 <div class="container">
   <div class="row">
     <div class="col-md-6 mx-auto">
@@ -54,8 +60,14 @@
           <input matInput type="number" placeholder="Image Order" [(ngModel)]="image.imageOrder">
         </mat-form-field>
         <br>
-        <button class="btn btn-outline-primary col-md-4" (click)="saveImage(image)">Save</button>
-
+        <div class="row m-0">
+          <div class="form-container col-md-5 ml-auto pl-0 pr-1">
+            <button class="btn btn-outline-primary text-center" (click)="saveImage(image)">Save</button>
+          </div>
+          <div class="form-container col-md-5 mr-auto pr-0 pl-1">
+            <button class="btn btn-outline-danger text-center" (click)="deleteImage(image.imageId)">Delete</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>

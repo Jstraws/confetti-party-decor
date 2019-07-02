@@ -39,7 +39,8 @@ import {LazyLoadImageModule} from 'ng-lazyload-image';
 import {SingleGalleryComponent} from './screens/single-gallery/single-gallery.component';
 import {LightboxModule} from 'ngx-lightbox';
 import {ImageSortingComponent} from './screens/admin/image-sorting/image-sorting.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import {AlertModule, ModalModule} from 'ngx-bootstrap';
+import {ConfirmationModalComponent} from './confirmation-modal/confirmation-modal.component';
 
 const appRoutes: Routes = [
   {path: 'about', component: AboutScreenComponent},
@@ -70,7 +71,8 @@ const appRoutes: Routes = [
     BalloonGalleryComponent,
     GraphicsGalleryComponent,
     SingleGalleryComponent,
-    ImageSortingComponent
+    ImageSortingComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     UiModule,
@@ -93,11 +95,14 @@ const appRoutes: Routes = [
     FontAwesomeModule,
     FormsModule,
     LazyLoadImageModule,
-    LightboxModule
+    LightboxModule,
+    AlertModule.forRoot(),
+    ModalModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true}],
   bootstrap: [AppComponent],
-  exports: [PhoneMaskDirective]
+  exports: [PhoneMaskDirective],
+  entryComponents: [ConfirmationModalComponent]
 })
 export class AppModule {
 

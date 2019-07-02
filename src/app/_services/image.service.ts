@@ -25,4 +25,8 @@ export class ImageService {
     return this.http.post(`${this.baseUrl}/save-all`, images).pipe(map(data => data as Image[]));
   }
 
+  public deleteImage(imageId: number): Observable<boolean> {
+    return this.http.delete(`${this.baseUrl}/delete/${imageId}`).pipe(map(data => data as boolean));
+  }
+
 }

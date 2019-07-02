@@ -4,6 +4,8 @@ import {Category} from '../../../_models/category';
 import {CategoryService} from '../../../_services/category.service';
 import {Image} from '../../../_models/image';
 import {environment} from '../../../../environments/environment';
+import {AlertService} from '../../../_services/alert.service';
+import {ConfirmationModalService} from '../../../_services/confirmation-modal.service';
 
 @Component({
   selector: 'app-image-sorting',
@@ -11,6 +13,7 @@ import {environment} from '../../../../environments/environment';
   styleUrls: ['./image-sorting.component.css']
 })
 export class ImageSortingComponent implements OnInit {
+  public alertMessage: string;
   public option: string;
   public type: string;
   public categories: Category[];
@@ -21,11 +24,16 @@ export class ImageSortingComponent implements OnInit {
 
   constructor(
     private imageService: ImageService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private alertService: AlertService,
+    private confirm: ConfirmationModalService
   ) {
   }
 
   ngOnInit() {
+    this.alertService.alertMessage.subscribe(message => {
+      this.alertMessage = message;
+    });
   }
 
   public fetchCategories() {
@@ -46,6 +54,7 @@ export class ImageSortingComponent implements OnInit {
     this.imageService.saveImage(image).subscribe(data => {
       image = data;
       this.images.sort((a, b) => a.imageOrder - b.imageOrder);
+      this.alertService.setErrorMessage('Image saved!');
     });
   }
 
@@ -54,6 +63,7 @@ export class ImageSortingComponent implements OnInit {
     this.imageService.saveImageList(this.images).subscribe(data => {
       this.images = data;
       this.images.sort((a, b) => a.imageOrder - b.imageOrder);
+      this.alertService.setErrorMessage('Images saved!');
     });
   }
 
@@ -62,5 +72,17 @@ export class ImageSortingComponent implements OnInit {
     for (let i = 0; i < this.images.length; i++) {
       this.images[i].imageOrder = i + 1;
     }
+  }
+
+  deleteImage(imageId: number) {
+    this.confirm.showConfirm('Delete Image', 'Are you sure you want to delete this image?')
+      .content.onClose.subscribe(isConfirmed => {
+      if (isConfirmed) {
+        this.imageService.deleteImage(imageId).subscribe(data => {
+          this.images = this.images.filter(image => image.imageId !== imageId);
+          this.saveAllImages();
+        });
+      }
+    });
   }
 }
