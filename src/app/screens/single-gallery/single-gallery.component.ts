@@ -37,6 +37,7 @@ export class SingleGalleryComponent implements OnInit {
         for (const image of this.images) {
           const album = {
             src: `${this.cdnUrl}/${image.filename}`,
+            caption: image.imageName
           };
 
           this.albums.push(album);

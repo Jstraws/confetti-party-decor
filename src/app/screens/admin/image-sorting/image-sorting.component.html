@@ -1,4 +1,4 @@
-<!--suppress RequiredAttributes -->
+<!--suppress RequiredAttributes, HtmlFormInputWithoutLabel -->
 <app-header-bar imageUrl="../../assets/img/contact-bg-min.jpg" text="Image Upload"></app-header-bar>
 <div class="container">
   <div class="row">
@@ -33,10 +33,29 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-3 px-3 py-1 example-box" *ngFor="let image of images">
-      <div class="crop-image bg-dark">
+    <div class="col-md-4 form-container mx-auto">
+      <button class="btn btn-outline-primary" (click)="saveAllImages()" [disabled]="!images || images.length === 0">Update All Images</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 px-3 py-1" *ngFor="let image of images">
+      <div class="crop-image bg-dark rounded-top">
         <img style="cursor: auto !important;" [defaultImage]="defaultImage" [lazyLoad]="cdnUrl + '/' + image.filename"
              alt="{{image.filename}}">
+      </div>
+      <div class="py-2 border border-dark rounded-bottom text-center">
+        <mat-form-field>
+          <input matInput type="text" placeholder="File Name" [(ngModel)]="image.filename" disabled>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" placeholder="Image Name" [(ngModel)]="image.imageName">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Image Order" [(ngModel)]="image.imageOrder">
+        </mat-form-field>
+        <br>
+        <button class="btn btn-outline-primary col-md-4" (click)="saveImage(image)">Save</button>
+
       </div>
     </div>
   </div>

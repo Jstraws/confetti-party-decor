@@ -4,7 +4,6 @@ import {Category} from '../../../_models/category';
 import {CategoryService} from '../../../_services/category.service';
 import {Image} from '../../../_models/image';
 import {environment} from '../../../../environments/environment';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-image-sorting',
@@ -42,7 +41,26 @@ export class ImageSortingComponent implements OnInit {
     });
   }
 
-  drop(event: CdkDragDrop<{ title: string, poster: string }[]>) {
-    moveItemInArray(this.images, event.previousIndex, event.currentIndex);
+  saveImage(image: Image) {
+    this.sortAndRenumber();
+    this.imageService.saveImage(image).subscribe(data => {
+      image = data;
+      this.images.sort((a, b) => a.imageOrder - b.imageOrder);
+    });
+  }
+
+  saveAllImages() {
+    this.sortAndRenumber();
+    this.imageService.saveImageList(this.images).subscribe(data => {
+      this.images = data;
+      this.images.sort((a, b) => a.imageOrder - b.imageOrder);
+    });
+  }
+
+  private sortAndRenumber() {
+    this.images.sort((a, b) => a.imageOrder - b.imageOrder);
+    for (let i = 0; i < this.images.length; i++) {
+      this.images[i].imageOrder = i + 1;
+    }
   }
 }

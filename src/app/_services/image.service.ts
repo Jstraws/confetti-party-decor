@@ -17,4 +17,12 @@ export class ImageService {
     return this.http.get(`${this.baseUrl}/get-by-folder/${folder}`).pipe(map(data => data as Image[]));
   }
 
+  public saveImage(image: Image): Observable<Image> {
+    return this.http.post(`${this.baseUrl}/save`, image).pipe(map(data => data as Image));
+  }
+
+  public saveImageList(images: Image[]): Observable<Image[]> {
+    return this.http.post(`${this.baseUrl}/save-all`, images).pipe(map(data => data as Image[]));
+  }
+
 }
