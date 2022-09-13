@@ -8,7 +8,7 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CategoryService {
-  private baseUrl = 'https://confetti-email-service.herokuapp.com/category';
+  private baseUrl = 'https://confetti-email-service-7epag.ondigitalocean.app/category';
 
   constructor(private http: HttpClient) {
   }

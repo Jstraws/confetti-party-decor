@@ -3,7 +3,7 @@ import {FileUploader} from 'ng2-file-upload';
 import {Category} from '../../../_models/category';
 import {CategoryService} from '../../../_services/category.service';
 
-const URL = 'https://confetti-email-service.herokuapp.com/image/upload/';
+const URL = 'https://confetti-email-service-7epag.ondigitalocean.app/image/upload/';
 
 @Component({
   selector: 'app-image-upload',
