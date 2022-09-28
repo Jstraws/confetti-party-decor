@@ -21,4 +21,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_CONFETTI_WEB_UI }}'
           channelId: live
-          projectId: ticker-tape-94ab7
+          projectId: confetti-web-ui
