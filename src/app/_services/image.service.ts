@@ -8,7 +8,7 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ImageService {
-  private baseUrl = 'https://confetti-email-service.herokuapp.com/image';
+  private baseUrl = 'https://confetti-email-service-7epag.ondigitalocean.app/image';
 
   constructor(private http: HttpClient) {
   }
